@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//Route Verb
+
 Route::get('/', function () {
     return view('welcome');
 });
-//
+//Route Verb
 Route::get('/', function () {
     return 'Hello, World!';
 });
@@ -40,6 +40,8 @@ Route::any('/', function () {
 Route::match(['get', 'post'], '/', function () {
     // Handle GET or POST requests to this route
 });
+
+
 
 Route::get('/user/{id}' , function($id){
     return $id;

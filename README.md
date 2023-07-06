@@ -126,4 +126,42 @@ Route::get('posts/{id}/{slug}', function ($id, $slug) {
 })->where(['id' => '[0-9]+', 'slug' => '[A-Za-z]+']);
 ```
 
+- Regular expression route constraint helpers
+```php 
+Route::get('users/{id}/friends/{friendname}', function ($id, $friendname) {
+    //
+})->whereNumber('id')->whereAlpha('friendname');
+
+Route::get('users/{name}', function ($name) {
+    //
+})->whereAlphaNumeric('name');
+
+Route::get('users/{id}', function ($id) {
+    //
+})->whereUuid('id');
+
+Route::get('users/{id}', function ($id) {
+    //
+})->whereUlid('id');
+
+Route::get('friends/types/{type}', function ($type) {
+    //
+})->whereIn('type', ['acquaintance', 'bestie', 'frenemy']);
+```
+
+- Route Names 
+    - The url() helper
+    ```php
+    <a href="<?php echo url('/'); ?>">
+// Outputs <a href="http://myapp.com/">
+    ```
+    - Defining route names
+    ```php 
+    // Defining a route with name() in routes/web.php:
+Route::get('members/{id}', [\App\Http\Controller\MemberController::class, 'show'])
+    ->name('members.show');
+
+// Linking the route in a view using the route() helper:
+<a href="<?php echo route('members.show', ['id' => 14]); ?>">
+    ```
 
