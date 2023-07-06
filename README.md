@@ -155,7 +155,8 @@ Route::get('friends/types/{type}', function ($type) {
 
     ```php
     <a href="<?php echo url('/'); ?>">
-// Outputs < a href="http://myapp.com/" >
+<!-- // Outputs < a href="http://myapp.com/" > -->
+    
     ```
 
     - Defining route names
