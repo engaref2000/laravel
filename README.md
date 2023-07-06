@@ -150,13 +150,17 @@ Route::get('friends/types/{type}', function ($type) {
 ```
 
 - Route Names 
+
     - The url() helper
+
     ```php
     <a href="<?php echo url('/'); ?>">
-// Outputs <a href="http://myapp.com/">
+// Outputs < a href="http://myapp.com/" >
     ```
+
     - Defining route names
-    ```php 
+
+    ```php
     // Defining a route with name() in routes/web.php:
 Route::get('members/{id}', [\App\Http\Controller\MemberController::class, 'show'])
     ->name('members.show');
