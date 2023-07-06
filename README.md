@@ -154,10 +154,10 @@ Route::get('friends/types/{type}', function ($type) {
     - The url() helper
 
     ```php
-    <a href="<?php echo url('/'); ?>">
-<!-- // Outputs < a href="http://myapp.com/" > -->
+ echo url('/'); 
+// Outputs http://myapp.com/
     
-    ```
+    ````
 
     - Defining route names
 
@@ -167,6 +167,6 @@ Route::get('members/{id}', [\App\Http\Controller\MemberController::class, 'show'
     ->name('members.show');
 
 // Linking the route in a view using the route() helper:
-<a href="<?php echo route('members.show', ['id' => 14]); ?>">
+echo route('members.show', ['id' => 14]); 
     ```
 
