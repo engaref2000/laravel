@@ -151,7 +151,7 @@ Route::get('friends/types/{type}', function ($type) {
 
 - Route Names 
 
-    - The url() helper
+- The url() helper
 
     ```php
  echo url('/'); 
@@ -159,7 +159,7 @@ Route::get('friends/types/{type}', function ($type) {
     
     ````
 
-    - Defining route names
+- Defining route names
 
     ```php
     // Defining a route with name() in routes/web.php:
