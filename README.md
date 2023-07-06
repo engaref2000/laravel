@@ -6,6 +6,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+## Refrence of this 
+[ laravel-up](https://learning.oreilly.com/library/view/laravel-up/9781098153250/ch03.html#idm45485889005200) 
+  
 
 ## what content 
 
