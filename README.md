@@ -7,60 +7,177 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Refrence
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+[ laravel-up](https://learning.oreilly.com/library/view/laravel-up/9781098153250/ch03.html#idm45485889005200)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## what content
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Route Handling
 
-## Learning Laravel
+-   Basic route definition
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```php
+// routes/web.php
+Route::get('/', function () {
+    return 'Hello, World!';
+});
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   Sample website
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```php
+Route::get('/', function () {
+    return view('welcome');
+});
 
-## Laravel Sponsors
+Route::get('about', function () {
+    return view('about');
+});
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Route::get('products', function () {
+    return view('products');
+});
 
-### Premium Partners
+Route::get('services', function () {
+    return view('services');
+});
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```
 
-## Contributing
+-   STATIC CALLS
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```php
+$router->get('/', function () {
+    return 'Hello, World!';
+});
 
-## Code of Conduct
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-   Route verbs
 
-## Security Vulnerabilities
+```php
+Route::get('/', function () {
+    return 'Hello, World!';
+});
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Route::post('/', function () {
+    // Handle someone sending a POST request to this route
+});
 
-## License
+Route::put('/', function () {
+    // Handle someone sending a PUT request to this route
+});
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Route::delete('/', function () {
+    // Handle someone sending a DELETE request to this route
+});
+
+Route::any('/', function () {
+    // Handle any verb request to this route
+});
+
+Route::match(['get', 'post'], '/', function () {
+    // Handle GET or POST requests to this route
+});
+```
+
+Routes calling controller methods
+
+```php
+    use App\Http\Controllers\WelcomeController;
+
+   Route::get('/', [WelcomeController::class, 'index']);
+
+   ///“string” syntax (Route::get('/', 'WelcomeController@index');)
+```
+
+-   Route Parameters
+
+```php
+Route::get('users/{id}/friends', function ($id) {
+    //
+});
+```
+
+-   Optional route parameters
+
+```php
+Route::get('users/{id?}', function ($id = 'fallbackId') {
+    //
+});
+```
+
+-   Regular expression route constraints
+
+```php
+Route::get('users/{id}', function ($id) {
+    //
+})->where('id', '[0-9]+');
+
+Route::get('users/{username}', function ($username) {
+    //
+})->where('username', '[A-Za-z]+');
+
+Route::get('posts/{id}/{slug}', function ($id, $slug) {
+    //
+})->where(['id' => '[0-9]+', 'slug' => '[A-Za-z]+']);
+```
+
+-   Regular expression route constraint helpers
+
+```php
+Route::get('users/{id}/friends/{friendname}', function ($id, $friendname) {
+    //
+})->whereNumber('id')->whereAlpha('friendname');
+
+Route::get('users/{name}', function ($name) {
+    //
+})->whereAlphaNumeric('name');
+
+Route::get('users/{id}', function ($id) {
+    //
+})->whereUuid('id');
+
+Route::get('users/{id}', function ($id) {
+    //
+})->whereUlid('id');
+
+Route::get('friends/types/{type}', function ($type) {
+    //
+})->whereIn('type', ['acquaintance', 'bestie', 'frenemy']);
+```
+
+-   Route Names
+
+-   The url() helper
+
+```html
+<a href="<?php echo url('/'); ?>">
+    // Outputs <a href="http://myapp.com/"></a
+></a>
+```
+
+-   Defining route names
+
+```php
+// Defining a route with name() in routes/web.php:
+Route::get('members/{id}', [\App\Http\Controller\MemberController::class, 'show'])
+    ->name('members.show');
+```
+
+```html
+// Linking the route in a view using the route() helper:
+<a href="<?php echo route('members.show', ['id' => 14]); ?>"></a>
+```
+
+-   Defining route names
+
+```php
+    // Defining a route with name() in routes/web.php:
+Route::get('members/{id}', [\App\Http\Controller\MemberController::class, 'show'])
+    ->name('members.show');
+
+// Linking the route in a view using the route() helper:
+echo route('members.show', ['id' => 14]);
+```
