@@ -172,3 +172,42 @@ Route::get('members/{id}', [\App\Http\Controller\MemberController::class, 'show'
 <a href="<?php echo route('members.show', ['id' => 14]); ?>">
 ```
 
+- ROUTE NAMING CONVENTIONS
+
+
+You can name your route anything you’d like, but the common convention is to use the plural of the resource name, then a period, then the action. So, here are the routes most common for a resource named photo:
+
+```php 
+photos.index
+photos.create
+photos.store
+photos.show
+photos.edit
+photos.update
+photos.destroy
+```
+
+- PASSING ROUTE PARAMETERS TO THE ROUTE() HELPER
+Option 1:
+```php 
+
+route('users.comments.show', [1, 2])
+// http://myapp.com/users/1/comments/2
+```
+
+option 2 : 
+```php 
+route('users.comments.show', ['userId' => 1, 'commentId' => 2])
+// http://myapp.com/users/1/comments/2
+```
+Option 3:
+
+```php 
+route('users.comments.show', ['commentId' => 2, 'userId' => 1])
+// http://myapp.com/users/1/comments/2
+```
+Option 4:
+```php 
+route('users.comments.show', ['userId' => 1, 'commentId' => 2, 'opt' => 'a'])
+// http://myapp.com/users/1/comments/2?opt=a
+```
