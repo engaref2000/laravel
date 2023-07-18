@@ -188,6 +188,7 @@ photos.destroy
 ```
 
 - PASSING ROUTE PARAMETERS TO THE ROUTE() HELPER
+
 Option 1:
 ```php 
 
